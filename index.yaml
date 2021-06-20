@@ -1,3 +1,15 @@
+    
 apiVersion: v1
-entries: {}
-generated: "2021-06-15T16:04:00.28692+08:00"
+entries:
+  test2:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-06-21T06:36:08.999738+08:00"
+    description: A Helm chart for Kubernetes
+    digest: d23280044a16191e6e7f221f7c8e95eafd81a0ec345d95637477d793c09445ba
+    name: test2
+    type: application
+    urls:
+    - https://ohdat.github.io/helm-charts/test2-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-06-21T06:36:08.998772+08:00"
