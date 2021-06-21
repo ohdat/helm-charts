@@ -3,7 +3,7 @@ entries:
   spinnaker:
   - apiVersion: v1
     appVersion: 1.24.2
-    created: "2021-06-21T07:06:11.69833+08:00"
+    created: "2021-06-21T11:23:35.138362+08:00"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -42,7 +42,27 @@ entries:
   test2:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-06-21T07:06:11.698747+08:00"
+    created: "2021-06-21T11:23:35.140457+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 74c893dcd173044a8b4abb95d032d9642aa2618ffcace8007c7212691d6c7f15
+    name: test2
+    type: application
+    urls:
+    - https://ohdat.github.io/helm-charts/test2-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-06-21T11:23:35.139949+08:00"
+    description: A Helm chart for Kubernetes
+    digest: be485a51e53c2711013f18f40ee82a4fdd0ede590d53702f92b3fd465d5a119b
+    name: test2
+    type: application
+    urls:
+    - https://ohdat.github.io/helm-charts/test2-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-06-21T11:23:35.138776+08:00"
     description: A Helm chart for Kubernetes
     digest: 7dd7e39ef0fe0f94112048e117605ad1e05bc18f546f407b1cc5c5293c16c972
     name: test2
@@ -53,7 +73,7 @@ entries:
   traefik:
   - apiVersion: v2
     appVersion: 2.4.8
-    created: "2021-06-21T07:06:11.700325+08:00"
+    created: "2021-06-21T11:23:35.141759+08:00"
     description: A Traefik based Kubernetes ingress controller
     digest: 85c6bab60a29369d3cbc4abbf05af79c7cacbd12dda02241ec638ed13644eac5
     home: https://traefik.io/
@@ -76,4 +96,4 @@ entries:
     urls:
     - https://ohdat.github.io/helm-charts/traefik-9.19.2.tgz
     version: 9.19.2
-generated: "2021-06-21T07:06:11.690228+08:00"
+generated: "2021-06-21T11:23:35.132788+08:00"
