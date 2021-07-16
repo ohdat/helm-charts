@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: dockersecret
-data:
-    .dockerconfigjson: eyJhdXRocyI6eyJodHRwczovL2luZGV4LmRvY2tlci5pby92Mi8iOnsidXNlcm5hbWUiOiJvaGRhdDEyMyIsInBhc3N3b3JkIjoib2hkYXQ1MlRPWXMiLCJhdXRoIjoiYjJoa1lYUXhNak02YjJoa1lYUTFNbFJQV1hNPSJ9fX0=
-type: kubernetes.io/dockerconfigjson
