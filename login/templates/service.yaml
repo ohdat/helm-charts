@@ -19,9 +19,9 @@ spec:
 
   {{- if not .Values.gateway.enabled }}
     - name: http2
-      port: {{ .Values.service.port }}
+      port: {{ .Values.service.grpcport }}
       protocol: TCP
-      targetPort: {{ .Values.service.grpcport }}
+      targetPort: {{ .Values.service.port }}
   {{- end }}
 
   {{- if .Values.gateway.enabled }}
