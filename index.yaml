@@ -3,7 +3,7 @@ entries:
   login:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-08-23T15:39:23.515794+08:00"
+    created: "2021-08-23T15:44:55.855177+08:00"
     description: A Helm chart for Kubernetes
     digest: cdb7d4139118406e5cc6266d8b28db4d9c316cb91103acf4d01b541b00f619e8
     name: login
@@ -14,7 +14,7 @@ entries:
   test:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-08-23T15:39:23.516204+08:00"
+    created: "2021-08-23T15:44:55.855704+08:00"
     description: A Helm chart for Kubernetes
     digest: 6119802bbc91d14d3ba358939c41d9960090db55ce6abf4556f2217bbb92e553
     name: test
@@ -25,7 +25,7 @@ entries:
   websvc:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-08-23T15:39:23.516698+08:00"
+    created: "2021-08-23T15:44:55.856291+08:00"
     description: A Helm chart for Kubernetes
     digest: dc50dc381e87877ab906cb5e024ec015314537dd0830065a9e75958f83c15161
     name: websvc
@@ -33,4 +33,4 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/websvc-0.1.9.tgz
     version: 0.1.9
-generated: "2021-08-23T15:39:23.515118+08:00"
+generated: "2021-08-23T15:44:55.85445+08:00"
