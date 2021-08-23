@@ -19,7 +19,7 @@ spec:
 
   {{- if not .Values.gateway.enabled }}
     - name: http2
-      port: {{ .Values.service.grpcport }}
+      port: {{ .Values.service.port }}
       protocol: TCP
       targetPort: {{ .Values.service.grpcport }}
   {{- end }}
