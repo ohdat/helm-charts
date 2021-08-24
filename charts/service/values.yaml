@@ -5,11 +5,11 @@
 replicaCount: 1
 
 image:
-  repository: "ohdat123/servi"
+  repository: "ohdat123/service"
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
-  # svct use grpc or serve
+  # cmd use serve
   command: "/dist/main serve"
 
 
