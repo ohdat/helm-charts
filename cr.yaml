@@ -1,2 +1,4 @@
-owner: ohdat
-git-base-url: https://api.github.com/
+# Set to true for GPG signing
+sign: true
+# UID of the GPG key to use
+key: Chart Releaser Test Key
