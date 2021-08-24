@@ -25,10 +25,6 @@ jobs:
           version: v3.4.1
           token: ${{ github.token }}
 
-      - name: Add dependency chart repos
-        run: |
-          helm repo add ohdat https://ohdat.github.io/helm-charts/
-
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.1.0
         with:
