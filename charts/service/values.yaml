@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: "ohdat123/service"
+  repository: "ohdat123/servi"
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
