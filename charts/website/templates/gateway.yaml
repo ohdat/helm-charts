@@ -1,0 +1,36 @@
+{{- if .Values.gateway.enabled -}}
+
+
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ include "website.fullname" . }}
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts: {{ .Values.gateway.hosts }}
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "website.fullname" . }}
+spec:
+  hosts: {{ .Values.gateway.hosts }}
+  gateways:
+    - {{ include "website.fullname" . }}
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: {{ include "website.fullname" . }} # use service name 
+            port:
+              number: {{ .Values.service.port }}
+
+{{- end }}
