@@ -21,4 +21,15 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/service-0.1.10/service-0.1.10.tgz
     version: 0.1.10
-generated: "2021-08-25T02:35:53.701870431Z"
+  website:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-08-25T06:14:59.585267599Z"
+    description: A Helm chart for Kubernetes
+    digest: f7071854110fbba037f2ebbbe6e5d59081a3381e70be856b3a6c32b4847be803
+    name: website
+    type: application
+    urls:
+    - https://github.com/ohdat/helm-charts/releases/download/website-0.1.9/website-0.1.9.tgz
+    version: 0.1.9
+generated: "2021-08-25T06:14:59.585275399Z"
