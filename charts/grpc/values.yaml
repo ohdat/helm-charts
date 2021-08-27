@@ -1,20 +1,15 @@
-# Default values for servicetest.
+# Default values for grpc.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: "ohdat123/service"
-  pullPolicy: Always
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
-  # cmd use serve
-  command: "/dist/main serve"
+  repository: nginx
+  pullPolicy: IfNotPresent
 
-
-imagePullSecrets: 
-- name: "regcred"
+imagePullSecrets:
+  - name: "regcred"
 nameOverride: ""
 fullnameOverride: ""
 
@@ -28,7 +23,7 @@ serviceAccount:
   name: ""
 
 podAnnotations:
-   serviceType: "serve"
+  serviceType: "grpc"
 
 podSecurityContext: {}
   # fsGroup: 2000
@@ -44,43 +39,18 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 8080
-  grpcport: 9090
 
-ingress:
-  enabled: true
-  className: ""
-  annotations: {}
-#    kubernetes.io/ingress.class: "istio"
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: service.xxjio.com
-      paths:
-        - path: /*
-          pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
-gateway:
-  enabled: true
-  hosts:
-    - "service.xxjio.com"
-
-config:
-  name: "ohdat"
-
-resources: 
+resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  limits:
-    cpu: 1
-    memory: 512Mi
-    requests:
-      cpu: 500m
-      memory: 128Mi
+   limits:
+     cpu: 1000m
+     memory: 512Mi
+   requests:
+     cpu: 500m
+     memory: 128Mi
 
 autoscaling:
   enabled: true
@@ -95,5 +65,6 @@ tolerations: []
 
 affinity: {}
 
-
 volumes: []
+
+
