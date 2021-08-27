@@ -60,3 +60,34 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+
+{{/*
+Create the volumes 
+*/}}
+{{- define "command.volumes" -}}
+{{- if .Values.volume.enabled }}
+{{- range .Values.volume.options }}
+- name: {{ .name }}
+  persistentVolumeClaim:
+  claimName: {{ .name }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+
+{{/*
+Create the volumeMounts 
+*/}}
+{{- define "command.volumeMounts" -}}
+{{- if .Values.volume.enabled }}
+{{- range .Values.volume.options }}
+- name: {{ .name }}
+  mountPath: {{.path}}
+{{- end }}
+{{- end }}
+{{- end }}
+
+  
+
+
