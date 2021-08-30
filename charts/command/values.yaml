@@ -7,13 +7,12 @@ replicaCount: 1
 image:
   repository: nginx
   pullPolicy: IfNotPresent
-
 config: 
   enabled: true
   name: "ohdat"
   key: config.yaml
   path: config.yaml
-  mountPath: /dist/config.yaml
+  mountPath: /dist/
 
 commandOverride: []
   # - /bin/sh
