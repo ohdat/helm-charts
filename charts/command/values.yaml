@@ -13,7 +13,7 @@ config:
   name: "ohdat"
   key: config.yaml
   path: config.yaml
-  mountPath: /dist
+  mountPath: /dist/config.yaml
 
 commandOverride: []
   # - /bin/sh

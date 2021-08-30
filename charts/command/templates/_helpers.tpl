@@ -91,7 +91,7 @@ Create the volumeMounts
 {{- if .Values.config.enabled }}
 - name: config-volume
   mountPath: {{ .Values.config.mountPath }}
-  append: true
+  subPath: config.yaml
 {{- end }}
 {{- if .Values.volume.enabled }}
 {{- range .Values.volume.options }}
@@ -101,17 +101,17 @@ Create the volumeMounts
 {{- end }}
 {{- end }}
 
-{{/*
-Create the command 
-*/}}
-{{- define "command.command" -}}
-{{- with .Values.commandOverride }}
-{{- toYaml . }}
-{{- else }}
-- /bin/sh
-- -c
-- {{ .Values.image.command }} 
-- --config /oconf/config.yaml
-{{- end }}
-{{- end }}
+# {{/*
+# Create the command 
+# */}}
+# {{- define "command.command" -}}
+# {{- with .Values.commandOverride }}
+# {{- toYaml . }}
+# {{- else }}
+# - /bin/sh
+# - -c
+# - {{ .Values.image.command }} 
+# - --config /oconf/config.yaml
+# {{- end }}
+# {{- end }}
 
