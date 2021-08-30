@@ -1,2 +1,3 @@
 # Set to true for GPG signing
 sign: false
+key: ohdat
