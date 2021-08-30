@@ -7,11 +7,22 @@ replicaCount: 1
 image:
   repository: nginx
   pullPolicy: IfNotPresent
-  command: "ohdat"
-  config: "ohdat"
 
+config: 
+  enabled: true
+  name: "ohdat"
+  key: config.yaml
+  path: config.yaml
+  mountPath: /dist
+
+commandOverride: []
+  # - /bin/sh
+  # - -c
+  # - /dist/main/ serve
+  # - --config /oconf/config.yaml
 imagePullSecrets: 
 - name: "regcred"
+
 nameOverride: ""
 fullnameOverride: ""
 

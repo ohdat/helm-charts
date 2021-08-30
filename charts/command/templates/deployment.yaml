@@ -36,12 +36,11 @@ spec:
           tty: true
           volumeMounts:
             {{- include "command.volumeMounts" . | nindent 12 }}
-          command:
-            - /bin/sh
-            - '-c'
-            - {{ .Values.image.command }}
-            - --config /oconf/config.yaml
-          
+          {{- $command := include "command.command" . -}}
+          {{- with .Values.commandOverride }}
+             command:
+            {{- toYaml .| nindent 12  }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
 

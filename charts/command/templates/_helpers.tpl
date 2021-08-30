@@ -66,12 +66,14 @@ Create the name of the service account to use
 Create the volumes 
 */}}
 {{- define "command.volumes" -}}
+{{- if .Values.config.enabled }}
 - name: config-volume
   configMap:
-    name: {{ .Values.image.config }}
+    name: {{ .Values.config.name }}
     items:
-      - key: config.yaml
-        path: config.yaml
+      - key: {{ .Values.config.key }}
+        path: {{ .Values.config.path }}
+{{- end }}
 {{- if .Values.volume.enabled }}
 {{- range .Values.volume.options }}
 - name: {{ .name }}
@@ -86,8 +88,11 @@ Create the volumes
 Create the volumeMounts 
 */}}
 {{- define "command.volumeMounts" -}}
+{{- if .Values.config.enabled }}
 - name: config-volume
-  mountPath: /oconf
+  mountPath: {{ .Values.config.mountPath }}
+  append: true
+{{- end }}
 {{- if .Values.volume.enabled }}
 {{- range .Values.volume.options }}
 - name: {{ .name }}
@@ -96,6 +101,17 @@ Create the volumeMounts
 {{- end }}
 {{- end }}
 
-  
-
+{{/*
+Create the command 
+*/}}
+{{- define "command.command" -}}
+{{- with .Values.commandOverride }}
+{{- toYaml . }}
+{{- else }}
+- /bin/sh
+- -c
+- {{ .Values.image.command }} 
+- --config /oconf/config.yaml
+{{- end }}
+{{- end }}
 
