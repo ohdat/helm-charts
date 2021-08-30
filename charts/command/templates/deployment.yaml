@@ -36,9 +36,9 @@ spec:
           tty: true
           volumeMounts:
             {{- include "command.volumeMounts" . | nindent 12 }}
-          {{- $command := include "command.command" . -}}
+
           {{- with .Values.commandOverride }}
-             command:
+          command:
             {{- toYaml .| nindent 12  }}
           {{- end }}
           resources:
