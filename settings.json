@@ -1,0 +1,8 @@
+{
+    "helm-intellisense.customValueFileNames": [
+        "prod-values.yaml",
+        "dev-values.yaml",
+        "values.yaml",
+        "deployment.yaml"
+    ]
+}
