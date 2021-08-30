@@ -1,23 +1,32 @@
-# Default values for command.
+# Default values for cornjob.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
+schedule: "0 */1 * * *"
+
 image:
   repository: nginx
   pullPolicy: IfNotPresent
-  command: "ohdat"
-  config: "ohdat"
+  config: ohdat
+  command: "main serve"
+
+commandOverride: []
+  # - /bin/sh
+  # - -c
+  # - main serve
+  # - --config /oconf/config.yaml
 
 imagePullSecrets: 
 - name: "regcred"
+
 nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  create: false
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
@@ -27,6 +36,7 @@ serviceAccount:
 podAnnotations: 
   sidecar.istio.io/inject: "false"
   configmap.reloader.stakater.com/reload: "ohdat"
+
 podSecurityContext: {}
   # fsGroup: 2000
 
@@ -43,7 +53,7 @@ volume:
   options: 
   - scname: efs-sc
     name: sc
-    path: /test
+    path: /tesl
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -51,14 +61,14 @@ resources:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
-    cpu: 1024m
-    memory: 2048Mi
+    cpu: 500m
+    memory: 1280Mi
   requests:
-    cpu: 512m
-    memory: 1024Mi
+    cpu: 1000m
+    memory: 5280Mi
 
 autoscaling:
-  enabled: true
+  enabled: false
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
