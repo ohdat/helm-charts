@@ -31,4 +31,4 @@ jobs:
           charts_dir: charts
         env:
           CR_TOKEN: "${{ github.token }}"
-          VERSION: ${{ github.job }}
+          VERSION: ${{ github.run_number }}
