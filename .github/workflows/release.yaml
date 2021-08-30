@@ -26,7 +26,7 @@ jobs:
           token: ${{ github.token }}
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.2.0
+        uses: helm/chart-releaser-action@v1.1.0
         with:
           charts_dir: charts
         env:
