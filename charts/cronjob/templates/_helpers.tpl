@@ -76,9 +76,9 @@ Create the volumes
 {{- end }}
 {{- if .Values.volume.enabled }}
 {{- range $key, $value := .Values.volume.options }}
-- name: "{{ include "cronjob.fullname" . }}-{{ $value.name }}-{{ $key }}"
+- name: {{- printf "%s-%s-%s" (include "cronjob.fullname" .) $value.name $key | trunc 63 | trimSuffix "-" }}
   persistentVolumeClaim:
-  claimName: "{{ include "cronjob.fullname" . }}-{{ $value.name }}-{{ $key }}"
+  claimName: {{- printf "%s-%s-%s" (include "cronjob.fullname" .) $value.name $key | trunc 63 | trimSuffix "-" }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -95,7 +95,7 @@ Create the volumeMounts
 {{- end }}
 {{- if .Values.volume.enabled }}
 {{- range $key, $value := .Values.volume.options }}
-- name: "{{ include "cronjob.fullname" . }}-{{ $value.name }}-{{ $key }}"
+- name: {{- printf "%s-%s-%s" (include "cronjob.fullname" .) $value.name $key | trunc 63 | trimSuffix "-" }}
   mountPath: {{.path}}
 {{- end }}
 {{- end }}
