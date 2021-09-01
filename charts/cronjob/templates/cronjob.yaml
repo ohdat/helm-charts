@@ -15,7 +15,7 @@ spec:
         spec:
           {{- with .Values.imagePullSecrets }}
           imagePullSecrets:
-            {{- toYaml . | nindent 8 }}
+            {{- toYaml . | nindent 10 }}
           {{- end }}
           serviceAccountName: {{ include "cronjob.serviceAccountName" . }}
           containers:
@@ -24,14 +24,15 @@ spec:
             imagePullPolicy: {{ .Values.image.pullPolicy }}
             volumeMounts:
               {{- include "cronjob.volumeMounts" . | nindent 12 }}
-
             {{- with .Values.commandOverride }}
             command:
-              {{- toYaml . | nindent 12  }}
+              {{- toYaml .| nindent 12  }}
             {{- end }}
+            resources:
+            {{- toYaml .Values.resources | nindent 12 }}
           restartPolicy: OnFailure
           volumes:
-            {{- include "cronjob.volumes" . | nindent 8 }}
+            {{- include "cronjob.volumes" . | nindent 10 }}
 
           {{- with .Values.nodeSelector }}
           nodeSelector:
