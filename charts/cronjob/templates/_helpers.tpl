@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "command.name" -}}
+{{- define "cornjob.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "command.fullname" -}}
+{{- define "cornjob.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "command.chart" -}}
+{{- define "cornjob.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "command.labels" -}}
-helm.sh/chart: {{ include "command.chart" . }}
-{{ include "command.selectorLabels" . }}
+{{- define "cornjob.labels" -}}
+helm.sh/chart: {{ include "cornjob.chart" . }}
+{{ include "cornjob.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "command.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "command.name" . }}
+{{- define "cornjob.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "cornjob.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "command.serviceAccountName" -}}
+{{- define "cornjob.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "command.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "cornjob.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
@@ -65,7 +65,7 @@ Create the name of the service account to use
 {{/*
 Create the volumes 
 */}}
-{{- define "command.volumes" -}}
+{{- define "cornjob.volumes" -}}
 {{- if .Values.config.enabled }}
 - name: config-volume
   configMap:
@@ -75,10 +75,10 @@ Create the volumes
         path: {{ .Values.config.path }}
 {{- end }}
 {{- if .Values.volume.enabled }}
-{{- range .Values.volume.options }}
-- name: {{ .name }}
+{{- range $key, $value := .Values.volume.options }}
+- name: "{{ include "cornjob.fullname" . }}-{{ $value.name }}-{{ $key }}"
   persistentVolumeClaim:
-  claimName: {{ .name }}
+  claimName: "{{ include "cornjob.fullname" . }}-{{ $value.name }}-{{ $key }}"
 {{- end }}
 {{- end }}
 {{- end }}
@@ -87,19 +87,18 @@ Create the volumes
 {{/*
 Create the volumeMounts 
 */}}
-{{- define "command.volumeMounts" -}}
+{{- define "cornjob.volumeMounts" -}}
 {{- if .Values.config.enabled }}
 - name: config-volume
   mountPath: "{{ .Values.config.mountPath }}{{ .Values.config.path }}"
   subPath: {{ .Values.config.path }}
 {{- end }}
 {{- if .Values.volume.enabled }}
-{{- range .Values.volume.options }}
-- name: {{ .name }}
+{{- range $key, $value := .Values.volume.options }}
+- name: "{{ include "cornjob.fullname" . }}-{{ $value.name }}-{{ $key }}"
   mountPath: {{.path}}
 {{- end }}
 {{- end }}
 {{- end }}
-
 
 

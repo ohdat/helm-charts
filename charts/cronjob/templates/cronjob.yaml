@@ -1,0 +1,42 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ include "cornjob.fullname" . }}
+spec:
+  schedule: "{{ .Values.schedule }}"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          {{- with .Values.podAnnotations }}
+          annotations:
+            {{- toYaml . | nindent 8 }}
+          {{- end }}
+        spec:
+          serviceAccountName: {{ include "cornjob.serviceAccountName" . }}
+          containers:
+          - name: {{ include "cornjob.fullname" . }}
+            image: "{{ .Values.image.repository }}"
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+            volumeMounts:
+              {{- include "cornjob.volumeMounts" . | nindent 12 }}
+            {{- with .Values.commandOverride }}
+            command:
+              {{- toYaml .| nindent 12  }}
+            {{- end }}
+          restartPolicy: OnFailure
+          volumes:
+            {{- include "cornjob.volumes" . | nindent 8 }}
+
+          {{- with .Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 8 }}
+          {{- end }}
+          {{- with .Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 8 }}
+          {{- end }}
+          {{- with .Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 8 }}
+          {{- end }}

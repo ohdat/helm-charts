@@ -1,5 +1,5 @@
 {{- if .Values.volume.enabled }}
-{{- range .Values.volume.options}}
+{{- range $kye,$value := .Values.volume.options }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -8,7 +8,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: {{ .scname }}
+  storageClassName: {{ $value.name }}
   resources:
     requests:
       storage: 5Gi

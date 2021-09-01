@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "command.fullname" . }}
+  name: {{ include "cornjob.fullname" . }}
   labels:
-    {{- include "command.labels" . | nindent 4 }}
+    {{- include "cornjob.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "command.fullname" . }}
+    name: {{ include "cornjob.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
