@@ -14,6 +14,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: replace run_number
+        run: |
+          find . -name "*Chart.yaml" -type f  | xargs -t sed -i "" 's/run_number/${{ github.run_number }}/g'
+
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
@@ -31,4 +35,3 @@ jobs:
           charts_dir: charts
         env:
           CR_TOKEN: "${{ github.token }}"
-          VERSION: ${{ github.run_number }}
