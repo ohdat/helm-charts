@@ -71,6 +71,17 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/command-0.1.11/command-0.1.11.tgz
     version: 0.1.11
+  cornjob:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-09-01T10:14:52.489344146Z"
+    description: A Helm chart for Kubernetes
+    digest: bef9041e2880eabdda442b7d6d1275ec109d646b1d80837eba2150f4a021c1f9
+    name: cornjob
+    type: application
+    urls:
+    - https://github.com/ohdat/helm-charts/releases/download/cornjob-1.1.1189748366/cornjob-1.1.1189748366.tgz
+    version: 1.1.1189748366
   service:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -93,4 +104,4 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/website-0.1.9/website-0.1.9.tgz
     version: 0.1.9
-generated: "2021-09-01T09:51:57.304648413Z"
+generated: "2021-09-01T10:14:52.489371446Z"
