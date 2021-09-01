@@ -23,16 +23,16 @@ spec:
             image: "{{ .Values.image.repository }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
             volumeMounts:
-              {{- include "cronjob.volumeMounts" . | nindent 12 }}
+              {{- include "cronjob.volumeMounts" . | nindent 14 }}
             {{- with .Values.commandOverride }}
             command:
-              {{- toYaml .| nindent 12  }}
+              {{- toYaml .| nindent 14  }}
             {{- end }}
             resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+              {{- toYaml .Values.resources | nindent 14 }}
           restartPolicy: OnFailure
           volumes:
-            {{- include "cronjob.volumes" . | nindent 10 }}
+            {{- include "cronjob.volumes" . | nindent 12 }}
 
           {{- with .Values.nodeSelector }}
           nodeSelector:
