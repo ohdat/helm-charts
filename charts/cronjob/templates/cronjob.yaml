@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: {{ include "cornjob.fullname" . }}
+  name: {{ include "cronjob.fullname" . }}
 spec:
   schedule: "{{ .Values.schedule }}"
   jobTemplate:
@@ -17,13 +17,13 @@ spec:
           imagePullSecrets:
             {{- toYaml . | nindent 8 }}
           {{- end }}
-          serviceAccountName: {{ include "cornjob.serviceAccountName" . }}
+          serviceAccountName: {{ include "cronjob.serviceAccountName" . }}
           containers:
-          - name: {{ include "cornjob.fullname" . }}
+          - name: {{ include "cronjob.fullname" . }}
             image: "{{ .Values.image.repository }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
             volumeMounts:
-              {{- include "cornjob.volumeMounts" . | nindent 12 }}
+              {{- include "cronjob.volumeMounts" . | nindent 12 }}
 
             {{- with .Values.commandOverride }}
             command:
@@ -31,7 +31,7 @@ spec:
             {{- end }}
           restartPolicy: OnFailure
           volumes:
-            {{- include "cornjob.volumes" . | nindent 8 }}
+            {{- include "cronjob.volumes" . | nindent 8 }}
 
           {{- with .Values.nodeSelector }}
           nodeSelector:
