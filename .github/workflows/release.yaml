@@ -16,6 +16,7 @@ jobs:
 
       - name: replace run_number
         run: |
+          cd charts/command
           ls
           pwd
           find . -name "*Chart.yaml" -type f  | xargs -t sed -i "" 's/run_number/${{ github.run_number }}/g'
