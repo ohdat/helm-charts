@@ -17,10 +17,10 @@ config:
   path: config.yaml
   mountPath: /dist/
 
-commandOverride: []
-  # - /bin/sh
-  # - -c
-  # - main serve
+commandOverride: 
+  - /bin/sh
+  - -c
+  - main serve
   # - --config /oconf/config.yaml
 
 imagePullSecrets: 
@@ -54,7 +54,7 @@ securityContext: {}
   # runAsUser: 1000
 
 volume:
-  enabled: false
+  enabled: true
   options: 
   - name: efs-sc
     path: /test
