@@ -1,5 +1,5 @@
 {{- if .Values.volume.enabled }}
-{{- range $kye,$value := .Values.volume.options }}
+{{- range $key,$value := .Values.volume.options }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
