@@ -16,7 +16,7 @@ jobs:
 
       - name: replace run_id
         run: |
-          find . -name "*Chart.yaml" -type f  | xargs -t sed -i  's/run_id/${{ github.run_id }}/g'
+          find . -name "*Chart.yaml" -type f  | xargs -t sed -i  's/001/${{ github.run_id }}/g'
 
       - name: Configure Git
         run: |
