@@ -5,16 +5,27 @@
 replicaCount: 1
 
 image:
-  repository: "ohdat123/service"
-  pullPolicy: Always
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
-  # cmd use serve
-  command: "/dist/main serve"
+  repository: nginx
+  pullPolicy: IfNotPresent
 
+config: 
+  enabled: true
+  name: "ohdat"
+  key: config.yaml
+  path: config.yaml
+  mountPath: /dist/
+
+commandOverride: []
+  # - /bin/sh
+  # - -c
+  # - /dist/main/ serve
+  # - --config /oconf/config.yaml
 
 imagePullSecrets: 
 - name: "regcred"
+
+
+
 nameOverride: ""
 fullnameOverride: ""
 
@@ -28,7 +39,8 @@ serviceAccount:
   name: ""
 
 podAnnotations:
-   serviceType: "serve"
+  serviceType: "serve"
+  configmap.reloader.stakater.com/reload: "ohdat"
 
 podSecurityContext: {}
   # fsGroup: 2000
@@ -44,31 +56,11 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 8080
-  grpcport: 9090
-
-ingress:
-  enabled: true
-  className: ""
-  annotations: {}
-#    kubernetes.io/ingress.class: "istio"
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: service.xxjio.com
-      paths:
-        - path: /*
-          pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 gateway:
   enabled: true
   hosts:
     - "service.xxjio.com"
-
-config:
-  name: "ohdat"
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -76,11 +68,11 @@ resources:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
-    cpu: 1
-    memory: 512Mi
-    requests:
-      cpu: 500m
-      memory: 128Mi
+    cpu: 1024m
+    memory: 2048Mi
+  requests:
+    cpu: 512m
+    memory: 1024Mi
 
 autoscaling:
   enabled: true
@@ -95,5 +87,8 @@ tolerations: []
 
 affinity: {}
 
-
-volumes: []
+volume:
+  enabled: false
+  options: 
+  - name: efs-sc
+    path: /test

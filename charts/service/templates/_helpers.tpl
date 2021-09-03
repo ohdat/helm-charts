@@ -60,3 +60,44 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+
+
+{{/*
+Create the volumes 
+*/}}
+{{- define "service.volumes" -}}
+{{- if .Values.config.enabled }}
+- name: config-volume
+  configMap:
+    name: {{ .Values.config.name }}
+    items:
+      - key: {{ .Values.config.key }}
+        path: {{ .Values.config.path }}
+{{- end }}
+{{- if .Values.volume.enabled }}
+{{- range $key, $value := .Values.volume.options }}
+- name: "{{ $value.name }}-{{ $key }}"
+  persistentVolumeClaim:
+    claimName: {{ $value.name }}{{ $key }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+
+{{/*
+Create the volumeMounts 
+*/}}
+{{- define "service.volumeMounts" -}}
+{{- if .Values.config.enabled }}
+- name: config-volume
+  mountPath: "{{ .Values.config.mountPath }}{{ .Values.config.path }}"
+  subPath: {{ .Values.config.path }}
+{{- end }}
+{{- if .Values.volume.enabled }}
+{{- range $key, $value := .Values.volume.options }}
+- name: "{{ $value.name }}-{{ $key }}"
+  mountPath: {{ $value.path }}
+{{- end }}
+{{- end }}
+{{- end }}

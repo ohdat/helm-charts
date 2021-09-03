@@ -36,15 +36,14 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           tty: true
           volumeMounts:
-            - name: config-volume
-              mountPath: /oconf
+            {{- include "service.volumeMounts" . | nindent 12 }}
+          {{- with .Values.commandOverride }}
           command:
-            - /bin/sh
-            - '-c'
-            - {{ .Values.image.command }} --config /oconf/config.yaml
+            {{- toYaml .| nindent 12  }}
+          {{- end }}
           ports:
             - name: http
-              containerPort: {{ .Values.service.grpcport }}
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
@@ -61,12 +60,4 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-        - name: config-volume
-          configMap:
-            name: {{ .Values.config.name }}
-            items:
-              - key: config.yaml
-                path: config.yaml
-        {{- with .Values.volumes }}
-          {{- toYaml . | nindent 8 }}
-        {{- end }}
+        {{- include "service.volumes" . | nindent 8 }}
