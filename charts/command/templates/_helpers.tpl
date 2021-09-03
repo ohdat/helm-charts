@@ -75,10 +75,10 @@ Create the volumes
         path: {{ .Values.config.path }}
 {{- end }}
 {{- if .Values.volume.enabled }}
-{{- range .Values.volume.options }}
-- name: {{ .name }}
+{{- range $key, $value := .Values.volume.options }}
+- name: "{{ $value.name }}-{{ $key }}"
   persistentVolumeClaim:
-  claimName: {{ .name }}
+    claimName: {{ $value.name }}{{ $key }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -94,9 +94,9 @@ Create the volumeMounts
   subPath: {{ .Values.config.path }}
 {{- end }}
 {{- if .Values.volume.enabled }}
-{{- range .Values.volume.options }}
-- name: {{ .name }}
-  mountPath: {{.path}}
+{{- range $key, $value := .Values.volume.options }}
+- name: "{{ $value.name }}-{{ $key }}"
+  mountPath: {{ $value.path }}
 {{- end }}
 {{- end }}
 {{- end }}

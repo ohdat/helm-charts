@@ -51,8 +51,7 @@ securityContext: {}
 volume:
   enabled: false
   options: 
-  - scname: efs-sc
-    name: sc
+  - name: efs-sc
     path: /test
 
 resources: 
