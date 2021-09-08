@@ -50,11 +50,10 @@ ingress:
   #    kubernetes.io/ingress.class: "istio"
   # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: xxjio.com
+    - host: www.ohdat.io
       paths:
         - path: /*
           pathType: ImplementationSpecific
-
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -63,10 +62,12 @@ ingress:
 gateway:
   enabled: true
   hosts:
-    - "website.xxjio.com"
+    - "www.ohdat.io"
 
 redirect:
-  enabled: false
+  enabled: true
+  form: "ohdat.io"
+  to: "www.ohdat.io"
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -75,10 +76,10 @@ resources:
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
     cpu: 500m
-    memory: 2024Mi
+    memory: 2048Mi
   requests:
     cpu: 500m
-    memory: 2024Mi
+    memory: 2048Mi
 
 autoscaling:
   enabled: true
