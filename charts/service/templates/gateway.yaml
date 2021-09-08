@@ -30,12 +30,5 @@ spec:
         - destination:
             host: {{ include "service.fullname" . }} # use service name 
             port:
-              number: {{ .Values.service.port }}
-      corsPolicy:
-        allowOrigin:
-        - "*"
-        allowMethods:
-        - POST
-        - GET
-        allowCredentials: false        
+              number: {{ .Values.service.port }}      
 {{- end }}
