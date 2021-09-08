@@ -65,7 +65,7 @@ gateway:
     - "www.ohdat.io"
 
 redirect:
-  enabled: true
+  enabled: false
   form: "ohdat.io"
   to: "www.ohdat.io"
 
