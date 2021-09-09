@@ -38,9 +38,8 @@ spec:
           - POST
           - GET
           - OPTIONS
-        allowHeader:
-          - "*"
-          
+        allowHeaders:
+          - "*"  
         exposeHeaders:
           - "*"
         allowCredentials: true        
