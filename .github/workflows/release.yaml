@@ -13,10 +13,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - run: |
-          echo "${{ toJson(github) }}"
-
-
       - name: replace run_id
         run: |
           find . -name "*Chart.yaml" -type f  | xargs -t sed -i  's/001/${{ github.run_id }}/g'
