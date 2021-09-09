@@ -37,6 +37,7 @@ spec:
         allowMethods:
           - POST
           - GET
+          - OPTIONS
         allowHeader:
           - "*"
         allowCredentials: false        
