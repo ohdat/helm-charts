@@ -40,7 +40,5 @@ spec:
           - OPTIONS
         allowHeaders:
           - "*"  
-        exposeHeaders:
-          - "*"
-        allowCredentials: true        
+        allowCredentials: false        
 {{- end }}
