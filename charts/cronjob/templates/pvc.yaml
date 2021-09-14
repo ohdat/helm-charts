@@ -1,10 +1,11 @@
 {{- if .Values.volume.enabled }}
+{{- $name := include "cronjob.name" .}}
 {{- range $key,$value := .Values.volume.options }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: "{{ include "cronjob.name" . }}-{{ $value.name }}-{{ $key }}"
+  name: "{{ $name }}-{{ $value.name }}-{{ $key }}"
 spec:
   accessModes:
     - ReadWriteMany
