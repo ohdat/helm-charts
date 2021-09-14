@@ -78,7 +78,7 @@ Create the volumes
 {{- range $key, $value := .Values.volume.options }}
 - name: "{{ $value.name }}-{{ $key }}"
   persistentVolumeClaim:
-    claimName: {{ $value.name }}{{ $key }}
+    claimName: "{{ $value.name }}-{{ $key }}"
 {{- end }}
 {{- end }}
 {{- end }}
