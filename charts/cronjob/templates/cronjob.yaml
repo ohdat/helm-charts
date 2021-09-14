@@ -6,6 +6,7 @@ spec:
   schedule: "{{ .Values.schedule }}"
   jobTemplate:
     spec:
+      parallelism: {{ .Values.replicaCount }}
       template:
         metadata:
           {{- with .Values.podAnnotations }}
