@@ -3,6 +3,16 @@ entries:
   command:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-09-21T08:08:35.071692394Z"
+    description: A Helm chart for Kubernetes
+    digest: 1033245c43aa3cff9e2b9ca53bb66ccfee58c28df60419569bc75f2184ade5fa
+    name: command
+    type: application
+    urls:
+    - https://github.com/ohdat/helm-charts/releases/download/command-1.1.1256750394/command-1.1.1256750394.tgz
+    version: 1.1.1256750394
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-09-21T08:07:02.515681864Z"
     description: A Helm chart for Kubernetes
     digest: b209ff264013bac87a7eaf6702d03dc7d4cc9fe3a1bd1669f85ba8b6b664c423
@@ -426,4 +436,4 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/website-0.1.9/website-0.1.9.tgz
     version: 0.1.9
-generated: "2021-09-21T08:07:02.515845767Z"
+generated: "2021-09-21T08:08:35.071859401Z"
