@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "service.name" -}}
+{{- define "grpc.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "service.fullname" -}}
+{{- define "grpc.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "service.chart" -}}
+{{- define "grpc.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "service.labels" -}}
-helm.sh/chart: {{ include "service.chart" . }}
-{{ include "service.selectorLabels" . }}
+{{- define "grpc.labels" -}}
+helm.sh/chart: {{ include "grpc.chart" . }}
+{{ include "grpc.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,19 +45,19 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "service.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "service.name" . }}
+{{- define "grpc.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "grpc.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
-Create the name of the service account to use
+Create the name of the grpc account to use
 */}}
-{{- define "service.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "service.fullname" .) .Values.serviceAccount.name }}
+{{- define "grpc.grpcAccountName" -}}
+{{- if .Values.grpcAccount.create }}
+{{- default (include "grpc.fullname" .) .Values.grpcAccount.name }}
 {{- else }}
-{{- default "default" .Values.serviceAccount.name }}
+{{- default "default" .Values.grpcAccount.name }}
 {{- end }}
 {{- end }}
 
@@ -66,7 +66,7 @@ Create the name of the service account to use
 {{/*
 Create the volumes 
 */}}
-{{- define "service.volumes" -}}
+{{- define "grpc.volumes" -}}
 {{- if .Values.config.enabled }}
 - name: config-volume
   configMap:
@@ -88,7 +88,7 @@ Create the volumes
 {{/*
 Create the volumeMounts 
 */}}
-{{- define "service.volumeMounts" -}}
+{{- define "grpc.volumeMounts" -}}
 {{- if .Values.config.enabled }}
 - name: config-volume
   mountPath: "{{ .Values.config.mountPath }}{{ .Values.config.path }}"

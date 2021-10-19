@@ -1,4 +1,4 @@
-# Default values for servicetest.
+# Default values for grpctest.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -29,17 +29,17 @@ imagePullSecrets:
 nameOverride: ""
 fullnameOverride: ""
 
-serviceAccount:
-  # Specifies whether a service account should be created
+grpcAccount:
+  # Specifies whether a grpc account should be created
   create: true
-  # Annotations to add to the service account
+  # Annotations to add to the grpc account
   annotations: {}
-  # The name of the service account to use.
+  # The name of the grpc account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
 podAnnotations:
-  serviceType: "serve"
+  grpcType: "serve"
   configmap.reloader.stakater.com/reload: "ohdat"
 
 podSecurityContext: {}
@@ -53,14 +53,14 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
+grpc:
   type: ClusterIP
   port: 8080
 
 gateway:
   enabled: false
   hosts:
-    - "service.xxjio.com"
+    - "grpc.xxjio.com"
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
