@@ -10,6 +10,6 @@ spec:
   containers:
     - name: wget
       image: busybox
-      command: ['wget']
-      args: ['{{ include "grpc.fullname" . }}:{{ .Values.grpc.port }}']
+      grpc: ['wget']
+      args: ['{{ include "grpc.fullname" . }}']
   restartPolicy: Never

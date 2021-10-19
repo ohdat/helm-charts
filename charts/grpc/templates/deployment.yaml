@@ -13,11 +13,10 @@ spec:
       {{- include "grpc.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      annotations:
       {{- with .Values.podAnnotations }}
+      annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-
       labels:
         {{- include "grpc.selectorLabels" . | nindent 8 }}
     spec:
@@ -25,7 +24,6 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      grpcAccountName: {{ include "grpc.grpcAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -37,16 +35,16 @@ spec:
           tty: true
           volumeMounts:
             {{- include "grpc.volumeMounts" . | nindent 12 }}
-          {{- with .Values.commandOverride }}
-          command:
+
+          {{- with .Values.grpcOverride }}
+          grpc:
             {{- toYaml .| nindent 12  }}
           {{- end }}
-          ports:
-            - name: http
-              containerPort: {{ .Values.grpc.port }}
-              protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+
+      volumes:
+        {{- include "grpc.volumes" . | nindent 8 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -59,5 +57,5 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      volumes:
-        {{- include "grpc.volumes" . | nindent 8 }}
+
+     

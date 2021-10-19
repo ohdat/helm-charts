@@ -51,16 +51,15 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
-Create the name of the grpc account to use
+Create the name of the service account to use
 */}}
-{{- define "grpc.grpcAccountName" -}}
-{{- if .Values.grpcAccount.create }}
-{{- default (include "grpc.fullname" .) .Values.grpcAccount.name }}
+{{- define "grpc.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create }}
+{{- default (include "grpc.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
-{{- default "default" .Values.grpcAccount.name }}
+{{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
-
 
 
 {{/*
@@ -76,10 +75,11 @@ Create the volumes
         path: {{ .Values.config.path }}
 {{- end }}
 {{- if .Values.volume.enabled }}
+{{- $name := include "grpc.name" . }}
 {{- range $key, $value := .Values.volume.options }}
-- name: "{{ $value.name }}-{{ $key }}"
+- name: "{{ $name }}-{{ $value.name }}-{{ $key }}"
   persistentVolumeClaim:
-    claimName: {{ $value.name }}{{ $key }}
+    claimName: "{{ $name }}-{{ $value.name }}-{{ $key }}"
 {{- end }}
 {{- end }}
 {{- end }}
@@ -89,6 +89,7 @@ Create the volumes
 Create the volumeMounts 
 */}}
 {{- define "grpc.volumeMounts" -}}
+{{- $name := include "grpc.name" . }}
 {{- if .Values.config.enabled }}
 - name: config-volume
   mountPath: "{{ .Values.config.mountPath }}{{ .Values.config.path }}"
@@ -96,8 +97,11 @@ Create the volumeMounts
 {{- end }}
 {{- if .Values.volume.enabled }}
 {{- range $key, $value := .Values.volume.options }}
-- name: "{{ $value.name }}-{{ $key }}"
+- name: "{{ $name }}-{{ $value.name }}-{{ $key }}"
   mountPath: {{ $value.path }}
 {{- end }}
 {{- end }}
 {{- end }}
+
+
+
