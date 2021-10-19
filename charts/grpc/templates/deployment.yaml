@@ -1,30 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "grpc.fullname" . }}
+  name: {{ include "service.fullname" . }}
   labels:
-    {{- include "grpc.labels" . | nindent 4 }}
+    {{- include "service.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "grpc.selectorLabels" . | nindent 6 }}
+      {{- include "service.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
       labels:
-        {{- include "grpc.selectorLabels" . | nindent 8 }}
+        {{- include "service.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "grpc.serviceAccountName" . }}
+      serviceAccountName: {{ include "service.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -33,31 +34,19 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          tty: true
+          volumeMounts:
+            {{- include "service.volumeMounts" . | nindent 12 }}
+          {{- with .Values.commandOverride }}
+          command:
+            {{- toYaml .| nindent 12  }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-#          livenessProbe:
-#            httpGet:
-#              path: /
-#              port: http
-#          readinessProbe:
-#            httpGet:
-#              path: /
-#              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      volumes:
-        - name: config-volume
-          configMap:
-            name: {{ .Values.image.config }}
-            items:
-              - key: config.yaml
-                path: config.yaml
-        {{- with .Values.volumes }}
-          {{- toYaml . | nindent 8 }}
-        {{- end }}
-
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -70,3 +59,5 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+        {{- include "service.volumes" . | nindent 8 }}

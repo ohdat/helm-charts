@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "grpc.name" -}}
+{{- define "service.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "grpc.fullname" -}}
+{{- define "service.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "grpc.chart" -}}
+{{- define "service.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "grpc.labels" -}}
-helm.sh/chart: {{ include "grpc.chart" . }}
-{{ include "grpc.selectorLabels" . }}
+{{- define "service.labels" -}}
+helm.sh/chart: {{ include "service.chart" . }}
+{{ include "service.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,18 +45,59 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "grpc.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "grpc.name" . }}
+{{- define "service.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "service.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "grpc.serviceAccountName" -}}
+{{- define "service.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "grpc.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "service.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
+{{- end }}
+{{- end }}
+
+
+
+{{/*
+Create the volumes 
+*/}}
+{{- define "service.volumes" -}}
+{{- if .Values.config.enabled }}
+- name: config-volume
+  configMap:
+    name: {{ .Values.config.name }}
+    items:
+      - key: {{ .Values.config.key }}
+        path: {{ .Values.config.path }}
+{{- end }}
+{{- if .Values.volume.enabled }}
+{{- range $key, $value := .Values.volume.options }}
+- name: "{{ $value.name }}-{{ $key }}"
+  persistentVolumeClaim:
+    claimName: {{ $value.name }}{{ $key }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+
+{{/*
+Create the volumeMounts 
+*/}}
+{{- define "service.volumeMounts" -}}
+{{- if .Values.config.enabled }}
+- name: config-volume
+  mountPath: "{{ .Values.config.mountPath }}{{ .Values.config.path }}"
+  subPath: {{ .Values.config.path }}
+{{- end }}
+{{- if .Values.volume.enabled }}
+{{- range $key, $value := .Values.volume.options }}
+- name: "{{ $value.name }}-{{ $key }}"
+  mountPath: {{ $value.path }}
+{{- end }}
 {{- end }}
 {{- end }}
