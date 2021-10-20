@@ -1,0 +1,17 @@
+{{- if .Values.volume.enabled }}
+{{- $name := include "dgrpc.name" .}}
+{{- range $key,$value := .Values.volume.options }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "{{ $name }}-{{ $value.name }}-{{ $key }}"
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: {{ $value.name }}
+  resources:
+    requests:
+      storage: 5Gi
+{{- end }}
+{{- end }}

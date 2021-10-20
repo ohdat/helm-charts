@@ -1,0 +1,44 @@
+{{- if .Values.gateway.enabled -}}
+
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ include "dgrpc.fullname" . }}
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+    - port:
+        number: 80
+        name: grpc
+        protocol: HTTP
+      hosts: {{ .Values.gateway.hosts }}
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "dgrpc.fullname" . }}
+spec:
+  hosts: {{ .Values.gateway.hosts }}
+  gateways:
+    - {{ include "dgrpc.fullname" . }}
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: {{ include "dgrpc.fullname" . }} # use dgrpc name 
+            port:
+              number: {{ .Values.dgrpc.port }}      
+      corsPolicy:
+        allowOrigin:
+          - "*"
+        allowMethods:
+          - POST
+          - GET
+          - OPTIONS
+        allowHeaders:
+          - "*"  
+        allowCredentials: false        
+{{- end }}
