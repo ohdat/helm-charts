@@ -14,7 +14,7 @@ config:
   path: config.yaml
   mountPath: /dist/
 
-grpcOverride: []
+commandOverride: []
   # - /bin/sh
   # - -c
   # - /dist/main/ serve

@@ -35,9 +35,8 @@ spec:
           tty: true
           volumeMounts:
             {{- include "grpc.volumeMounts" . | nindent 12 }}
-
-          {{- with .Values.grpcOverride }}
-          grpc:
+          {{- with .Values.commandOverride }}
+          command:
             {{- toYaml .| nindent 12  }}
           {{- end }}
           resources:
