@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "login.selectorLabels" . | nindent 4 }}
+    {{- include "grpc.selectorLabels" . | nindent 4 }}
