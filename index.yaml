@@ -293,7 +293,28 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/cronjob-1.1.1189777840/cronjob-1.1.1189777840.tgz
     version: 1.1.1189777840
+  dgrpc:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-10-21T05:48:46.383034697Z"
+    description: A Helm chart for Kubernetes
+    digest: dd4a76c866ade3a30e10736eec8d0462128a3aa157698cf2a29f2bace1e0256d
+    name: dgrpc
+    type: application
+    urls:
+    - https://github.com/ohdat/helm-charts/releases/download/dgrpc-1.1.1366607133/dgrpc-1.1.1366607133.tgz
+    version: 1.1.1366607133
   grpc:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-10-21T05:48:46.523440766Z"
+    description: A Helm chart for Kubernetes
+    digest: 976e857a22e5b99655f0dc24037382539f04adcd4f8f7f5a678bb4276ab9db85
+    name: grpc
+    type: application
+    urls:
+    - https://github.com/ohdat/helm-charts/releases/download/grpc-1.1.1366607133/grpc-1.1.1366607133.tgz
+    version: 1.1.1366607133
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2021-10-20T10:35:52.487568959Z"
@@ -526,4 +547,4 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/website-0.1.9/website-0.1.9.tgz
     version: 0.1.9
-generated: "2021-10-20T10:35:52.48780186Z"
+generated: "2021-10-21T05:48:46.523656671Z"
