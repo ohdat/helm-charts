@@ -296,6 +296,16 @@ entries:
   dgrpc:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-10-21T05:53:35.417392809Z"
+    description: A Helm chart for Kubernetes
+    digest: cdb167500f1766756b7f83683f878d01287680b35f99f7929fc22c18de5adafd
+    name: dgrpc
+    type: application
+    urls:
+    - https://github.com/ohdat/helm-charts/releases/download/dgrpc-1.1.1366617426/dgrpc-1.1.1366617426.tgz
+    version: 1.1.1366617426
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-10-21T05:48:46.383034697Z"
     description: A Helm chart for Kubernetes
     digest: dd4a76c866ade3a30e10736eec8d0462128a3aa157698cf2a29f2bace1e0256d
@@ -335,6 +345,16 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/grpc-1.1.1361820744/grpc-1.1.1361820744.tgz
     version: 1.1.1361820744
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-10-21T05:53:35.526578213Z"
+    description: A Helm chart for Kubernetes
+    digest: 1fe215020446d1d4ecafb56dbfbceebf3cbfea786da6d948afcf7cde8d511327
+    name: grpc
+    type: application
+    urls:
+    - https://github.com/ohdat/helm-charts/releases/download/grpc-1.1.006/grpc-1.1.006.tgz
+    version: 1.1.006
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2021-10-20T02:20:09.17102764Z"
@@ -547,4 +567,4 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/website-0.1.9/website-0.1.9.tgz
     version: 0.1.9
-generated: "2021-10-21T05:48:46.523656671Z"
+generated: "2021-10-21T05:53:35.526770814Z"
