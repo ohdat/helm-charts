@@ -40,7 +40,6 @@ grpc:
 
 podAnnotations:
   serviceType: "serve"
-  #sidecar.istio.io/inject: "false"
   configmap.reloader.stakater.com/reload: "ohdat"
 podSecurityContext: {}
   # fsGroup: 2000
