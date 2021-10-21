@@ -51,13 +51,13 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
-Create the name of the service account to use
+Create the name of the grpc account to use
 */}}
-{{- define "grpc.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "grpc.fullname" .) .Values.serviceAccount.name }}
+{{- define "grpc.grpcAccountName" -}}
+{{- if .Values.grpcAccount.create }}
+{{- default (include "grpc.fullname" .) .Values.grpcAccount.name }}
 {{- else }}
-{{- default "default" .Values.serviceAccount.name }}
+{{- default "default" .Values.grpcAccount.name }}
 {{- end }}
 {{- end }}
 

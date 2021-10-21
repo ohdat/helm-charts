@@ -38,11 +38,17 @@ grpc:
   type: ClusterIP
   port: 8080
 
-podAnnotations: 
-  sidecar.istio.io/inject: "false"
+podAnnotations:
+  serviceType: "serve"
+  #sidecar.istio.io/inject: "false"
   configmap.reloader.stakater.com/reload: "ohdat"
 podSecurityContext: {}
   # fsGroup: 2000
+
+gateway:
+  enabled: true
+  hosts:
+    - "service.xxjio.com"
 
 securityContext: {}
   # capabilities:
