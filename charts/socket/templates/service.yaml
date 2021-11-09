@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "socket.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.socket.type }}
+  type: {{ .Values.service.type }}
   ports:
     # - port: {{ .Values.socket.port }}
     #   targetPort: http
