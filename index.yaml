@@ -656,6 +656,17 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/service-0.1.10/service-0.1.10.tgz
     version: 0.1.10
+  socket:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-11-09T08:11:45.402765746Z"
+    description: A Helm chart for Kubernetes
+    digest: edb222320f3a95f84fa00f7b0871b1e280e8ea6320fbdd16e0acf0b8d9f593be
+    name: socket
+    type: application
+    urls:
+    - https://github.com/ohdat/helm-charts/releases/download/socket-1.1.1438520133/socket-1.1.1438520133.tgz
+    version: 1.1.1438520133
   website:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -697,4 +708,4 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/website-0.1.9/website-0.1.9.tgz
     version: 0.1.9
-generated: "2021-11-09T08:05:31.949219424Z"
+generated: "2021-11-09T08:11:45.403095048Z"
