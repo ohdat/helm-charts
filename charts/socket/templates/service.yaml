@@ -7,11 +7,11 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    # - port: {{ .Values.socket.port }}
+    # - port: {{ .Values.service.port }}
     #   targetPort: http
     #   protocol: TCP
     #   name: http
-    # - port: {{ .Values.socket.grpcport }}
+    # - port: {{ .Values.service.grpcport }}
     #   targetPort: grpc
     #   protocol: TCP
     #   name: grpc
