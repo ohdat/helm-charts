@@ -19,16 +19,16 @@ spec:
 
   {{- if not .Values.gateway.enabled }}
     - name: http2
-      port: {{ .Values.socket.grpcport }}
+      port: {{ .Values.service.grpcport }}
       protocol: TCP
-      targetPort: {{ .Values.socket.port }}
+      targetPort: {{ .Values.service.port }}
   {{- end }}
 
   {{- if .Values.gateway.enabled }}
     - name: http
-      port: {{ .Values.socket.port }}
+      port: {{ .Values.service.port }}
       protocol: TCP
-      targetPort: {{ .Values.socket.port }}
+      targetPort: {{ .Values.service.port }}
   {{- end }}
   selector:
     {{- include "socket.selectorLabels" . | nindent 4 }}
