@@ -30,7 +30,8 @@ spec:
         - destination:
             host: {{ include "socket.fullname" . }} # use socket name 
             port:
-              number: {{ .Values.socket.port }}      
+              number: {{ .Values.socket.port }}
+      websocketUpgrade: true  
       corsPolicy:
         allowOrigin:
           - "*"
