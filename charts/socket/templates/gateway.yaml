@@ -9,9 +9,9 @@ spec:
     istio: ingressgateway # use istio default controller
   servers:
     - port:
-        number: 443
-        name: https
-        protocol: HTTPS
+        number: 80
+        name: http
+        protocol: HTTP
       tls:
         mode: PASSTHROUGH
       hosts: {{ .Values.gateway.hosts }}
