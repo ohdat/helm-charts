@@ -12,8 +12,6 @@ spec:
         number: 80
         name: http
         protocol: HTTP
-      tls:
-        mode: PASSTHROUGH
       hosts: {{ .Values.gateway.hosts }}
 ---
 apiVersion: networking.istio.io/v1alpha3
