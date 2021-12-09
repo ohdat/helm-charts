@@ -25,14 +25,6 @@ spec:
   http:
     - match:
         - uri:
-            prefix: /v2/account/uid 
-      route:
-        - destination:
-            host: {{ include "service.fullname" . }} # use service name
-            port:
-              number: 1234
-    - match:
-        - uri:
             prefix: /
       route:
         - destination:
