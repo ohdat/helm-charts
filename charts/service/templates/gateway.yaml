@@ -26,6 +26,7 @@ spec:
     - match:
         - uri:
             prefix: /
+            regex: "/^((?!uid).)+$/"
       route:
         - destination:
             host: {{ include "service.fullname" . }} # use service name 
