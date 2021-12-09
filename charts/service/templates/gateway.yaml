@@ -25,12 +25,12 @@ spec:
   http:
     - match:
         - uri:
-            regex: "/^((?!uid).)+$/"
+            prefix: /
       route:
         - destination:
-            host: {{ include "service.fullname" . }} # use service name 
+            host: {{ include "service.fullname" . }} # use service name
             port:
-              number: {{ .Values.service.port }}      
+              number: {{ .Values.service.port }}
       corsPolicy:
         allowOrigin:
           - "*"
