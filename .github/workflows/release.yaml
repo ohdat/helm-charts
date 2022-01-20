@@ -3,7 +3,7 @@ name: Release Charts
 on:
   push:
     branches:
-      - grpc
+      - grpc_new
 
 jobs:
   release:

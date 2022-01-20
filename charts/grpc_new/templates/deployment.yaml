@@ -33,6 +33,9 @@ spec:
           image: "{{ .Values.image.repository }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           tty: true
+          ports:
+          - containerPort: 8080
+            name: grpc
           volumeMounts:
             {{- include "grpc.volumeMounts" . | nindent 12 }}
           {{- with .Values.commandOverride }}

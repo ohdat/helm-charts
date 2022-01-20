@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ include "grpc.fullname" . }}
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+    - port:
+        name: grpc
+        number: 80
+        protocol: HTTP
+      hosts: {{ .Values.gateway.hosts }}
+
