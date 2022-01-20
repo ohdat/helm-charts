@@ -10,6 +10,5 @@ spec:
     - port: {{ .Values.grpc.port }}
       targetPort: {{ .Values.grpc.port }}
       name: grpc
-      protocol: TCP
   selector:
     {{- include "grpc.selectorLabels" . | nindent 4 }}
