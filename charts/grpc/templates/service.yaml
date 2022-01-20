@@ -5,7 +5,6 @@ metadata:
   labels:
     {{- include "grpc.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.grpc.type }}
   ports:
     - port: {{ .Values.grpc.port }}
       targetPort: {{ .Values.grpc.port }}
