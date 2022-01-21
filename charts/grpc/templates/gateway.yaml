@@ -11,7 +11,7 @@ spec:
     - port:
         number: 80
         name: grpc
-        protocol: HTTP
+        protocol: GRPC
       hosts: {{ .Values.gateway.hosts }}
 ---
 apiVersion: networking.istio.io/v1alpha3
