@@ -37,7 +37,9 @@ spec:
         allowMethods:
           - POST
           - GET
+          - PUT
           - OPTIONS
+          - DELETE
         allowHeaders:
           - "*"  
         allowCredentials: false        
