@@ -40,6 +40,7 @@ spec:
           - PUT
           - OPTIONS
           - DELETE
+          - PATCH
         allowHeaders:
           - "*"  
         allowCredentials: false        
