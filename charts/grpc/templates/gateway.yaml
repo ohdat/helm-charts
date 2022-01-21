@@ -9,7 +9,7 @@ spec:
     istio: ingressgateway # use istio default controller
   servers:
     - port:
-        number: 80
+        number: 800
         name: grpc
         protocol: HTTP
       hosts: {{ .Values.gateway.hosts }}
