@@ -87,6 +87,8 @@ tolerations: []
 
 affinity: {}
 
+livenessProbe: {}
+
 volume:
   enabled: false
   options: 
