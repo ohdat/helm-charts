@@ -89,6 +89,8 @@ affinity: {}
 
 livenessProbe: {}
 
+startupProbe: {}     
+
 volume:
   enabled: false
   options: 
