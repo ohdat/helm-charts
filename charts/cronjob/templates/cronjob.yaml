@@ -2,6 +2,8 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: {{ include "cronjob.fullname" . }}
+  labels:
+    app: {{ include "cronjob.fullname" . }}
 spec:
   schedule: "{{ .Values.schedule }}"
   jobTemplate:
@@ -13,6 +15,8 @@ spec:
           annotations:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          labels:
+            app: {{ include "cronjob.fullname" . }}
         spec:
           {{- with .Values.imagePullSecrets }}
           imagePullSecrets:
