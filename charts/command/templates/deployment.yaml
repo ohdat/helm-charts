@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "command.fullname" . }}
   labels:
+    app: {{ include "command.fullname" . }}
     {{- include "command.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
@@ -18,6 +19,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
+        app: {{ include "command.fullname" . }}
         {{- include "command.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
