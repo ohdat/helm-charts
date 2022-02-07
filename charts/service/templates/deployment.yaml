@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "service.fullname" . }}
   labels:
+    app: {{ include "service.fullname" . }}
     {{- include "service.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
