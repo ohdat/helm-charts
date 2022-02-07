@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "grpc.fullname" . }}
   labels:
+    app: {{ include "grpc.fullname" . }}
     {{- include "grpc.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
@@ -18,6 +19,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
+        app: {{ include "grpc.fullname" . }}
         {{- include "grpc.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
