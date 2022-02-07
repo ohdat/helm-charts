@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "socket.fullname" . }}
   labels:
+    app: {{ include "socket.fullname" . }}
     {{- include "socket.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
@@ -19,6 +20,7 @@ spec:
       {{- end }}
 
       labels:
+        app: {{ include "socket.fullname" . }}
         {{- include "socket.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
