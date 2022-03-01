@@ -658,6 +658,16 @@ entries:
   service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2022-03-01T11:39:41.090223234Z"
+    description: A Helm chart for Kubernetes
+    digest: 851b323387af3cc285710606b32ed93f490cca4fd19a7b11be9abed6ebc9075f
+    name: service
+    type: application
+    urls:
+    - https://github.com/ohdat/helm-charts/releases/download/service-1.1.1915934722/service-1.1.1915934722.tgz
+    version: 1.1.1915934722
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2022-02-07T07:38:51.348364925Z"
     description: A Helm chart for Kubernetes
     digest: 9d02c3c754de12cdfcb8fc65609a236e2c47c9bf630f3c1cc7bcd132840d186f
@@ -1148,4 +1158,4 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/website-0.1.9/website-0.1.9.tgz
     version: 0.1.9
-generated: "2022-02-07T08:24:35.195226838Z"
+generated: "2022-03-01T11:39:41.09108144Z"
