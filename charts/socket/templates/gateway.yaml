@@ -12,14 +12,16 @@ spec:
         number: 80
         name: http
         protocol: HTTP
-      hosts: {{ .Values.gateway.hosts }}
+      hosts: 
+        {{- toYaml .Values.gateway.hosts | nindent 8 }}
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: {{ include "socket.fullname" . }}
 spec:
-  hosts: {{ .Values.gateway.hosts }}
+  hosts: 
+    {{- toYaml .Values.gateway.hosts | nindent 6 }}
   gateways:
     - {{ include "socket.fullname" . }}
   http:
