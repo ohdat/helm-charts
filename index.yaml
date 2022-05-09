@@ -1150,6 +1150,16 @@ entries:
   tcpservice:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2022-05-09T18:40:36.095572252Z"
+    description: A Helm chart for Kubernetes
+    digest: 4c1e96c69d156cf74a4a15e7d59cf829279d5c931e901434b7601a3e522c6a84
+    name: tcpservice
+    type: application
+    urls:
+    - https://github.com/ohdat/helm-charts/releases/download/tcpservice-1.1.2296122053/tcpservice-1.1.2296122053.tgz
+    version: 1.1.2296122053
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2022-05-09T18:39:19.476857668Z"
     description: A Helm chart for Kubernetes
     digest: 21562c423f3b837dd44da17b3e7df3cd54d362725a0439cdba9f6941b96877b8
@@ -1279,4 +1289,4 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/website-0.1.9/website-0.1.9.tgz
     version: 0.1.9
-generated: "2022-05-09T18:39:19.478096883Z"
+generated: "2022-05-09T18:40:36.096945233Z"
