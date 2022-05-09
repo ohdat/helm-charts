@@ -23,10 +23,12 @@ spec:
   gateways:
     - {{ include "tcpservice.fullname" . }}
   tcp:
-    route:
-      - destination:
-          host: {{ include "tcpservice.fullname" . }} # use tcpservice name 
-          port:
-            number: {{ .Values.service.port }}      
+    - match:
+      - port: 8000 
+      route:
+        - destination:
+            host: {{ include "tcpservice.fullname" . }} # use tcpservice name 
+            port:
+              number: {{ .Values.service.port }}      
           
 {{- end }}
