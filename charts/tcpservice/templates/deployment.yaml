@@ -47,6 +47,11 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      tolerations:
+        - key: application
+          operator: Equal
+          value: games
+          effect: NoSchedule
 
       volumes:
         {{- include "tcpservice.volumes" . | nindent 8 }}
