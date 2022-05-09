@@ -24,20 +24,11 @@ spec:
     - {{ include "tcpservice.fullname" . }}
   tcp:
     - match:
-        - port: 800 
+      - port: 800 
       route:
         - destination:
             host: {{ include "tcpservice.fullname" . }} # use tcpservice name 
             port:
               number: {{ .Values.service.port }}      
-      corsPolicy:
-        allowOrigin:
-          - "*"
-        allowMethods:
-          - POST
-          - GET
-          - OPTIONS
-        allowHeaders:
-          - "*"  
-        allowCredentials: false        
+          
 {{- end }}
