@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "tcpservice.fullname" . }}
+  labels:
+    {{- include "tcpservice.labels" . | nindent 4 }}
+spec:
+  ports:
+    - port: {{ .Values.tcpservice.port }}
+      targetPort: {{ .Values.tcpservice.port }}
+      protocol: TCP
+  selector:
+    {{- include "tcpservice.selectorLabels" . | nindent 4 }}

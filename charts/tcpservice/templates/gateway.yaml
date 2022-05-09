@@ -1,0 +1,44 @@
+{{- if .Values.gateway.enabled -}}
+
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ include "tcpservice.fullname" . }}
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+    - port:
+        number: 9899
+        name: tcpservice
+        protocol: TCP
+      hosts: {{ .Values.gateway.hosts }}
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "tcpservice.fullname" . }}
+spec:
+  hosts: {{ .Values.gateway.hosts }}
+  gateways:
+    - {{ include "tcpservice.fullname" . }}
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: {{ include "tcpservice.fullname" . }} # use tcpservice name 
+            port:
+              number: {{ .Values.tcpservice.port }}      
+      corsPolicy:
+        allowOrigin:
+          - "*"
+        allowMethods:
+          - POST
+          - GET
+          - OPTIONS
+        allowHeaders:
+          - "*"  
+        allowCredentials: false        
+{{- end }}
