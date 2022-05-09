@@ -10,7 +10,7 @@ spec:
   servers:
     - port:
         number: 800
-        name: tcpservice
+        name: tcp
         protocol: TCP
       hosts: {{ .Values.gateway.hosts }}
 ---
