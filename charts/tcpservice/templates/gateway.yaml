@@ -9,7 +9,7 @@ spec:
     istio: ingressgateway # use istio default controller
   servers:
     - port:
-        number: 8000
+        number: 800
         name: tcpservice
         protocol: TCP
       hosts: {{ .Values.gateway.hosts }}
@@ -30,7 +30,7 @@ spec:
         - destination:
             host: {{ include "tcpservice.fullname" . }} # use tcpservice name 
             port:
-              number: {{ .Values.tcpservice.port }}      
+              number: {{ .Values.service.port }}      
       corsPolicy:
         allowOrigin:
           - "*"

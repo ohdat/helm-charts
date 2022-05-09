@@ -34,12 +34,12 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-tcpservice:
+service:
   type: ClusterIP
   port: 8080
 
 podAnnotations:
-  serviceType: "serve"
+  serviceType: "tcp"
   configmap.reloader.stakater.com/reload: "ohdat"
 podSecurityContext: {}
   # fsGroup: 2000

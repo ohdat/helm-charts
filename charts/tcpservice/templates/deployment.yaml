@@ -36,7 +36,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: tcpservice
-              containerPort: {{ .Values.tcpservice.port }}
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
           tty: true
           volumeMounts:

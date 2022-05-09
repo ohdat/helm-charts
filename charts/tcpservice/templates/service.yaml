@@ -6,8 +6,8 @@ metadata:
     {{- include "tcpservice.labels" . | nindent 4 }}
 spec:
   ports:
-    - port: {{ .Values.tcpservice.port }}
-      targetPort: {{ .Values.tcpservice.port }}
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
       protocol: TCP
   selector:
     {{- include "tcpservice.selectorLabels" . | nindent 4 }}
