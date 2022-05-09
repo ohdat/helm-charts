@@ -11,6 +11,6 @@ spec:
       targetPort: {{ .Values.service.port }}
       protocol: TCP
       name: tcp
-      nodePort: 9899
+      nodePort: 30000
   selector:
     {{- include "tcpservice.selectorLabels" . | nindent 4 }}
