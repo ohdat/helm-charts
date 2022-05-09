@@ -22,10 +22,9 @@ spec:
   hosts: {{ .Values.gateway.hosts }}
   gateways:
     - {{ include "tcpservice.fullname" . }}
-  http:
+  tcp:
     - match:
-        - uri:
-            prefix: /
+        - port: 800 
       route:
         - destination:
             host: {{ include "tcpservice.fullname" . }} # use tcpservice name 
