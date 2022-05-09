@@ -23,9 +23,7 @@ spec:
   gateways:
     - {{ include "tcpservice.fullname" . }}
   tcp:
-    - match:
-      - port: 8000 
-      route:
+    - route:
         - destination:
             host: {{ include "tcpservice.fullname" . }} # use tcpservice name 
             port:
