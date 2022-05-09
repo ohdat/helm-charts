@@ -337,14 +337,14 @@ entries:
   grpc:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-05-09T08:45:48.040625171Z"
+    created: "2022-05-09T08:46:10.378952224Z"
     description: A Helm chart for Kubernetes
-    digest: 76e5e121e12e88488311fa2062cef9650f6adfdd87f883f487b0e95ede4ac98d
+    digest: 5429fe33dacd81b95eb205fd95b9fb5cab359a6bdb507b38b4dcdc652406f164
     name: grpc
     type: application
     urls:
-    - https://github.com/ohdat/helm-charts/releases/download/grpc-1.1.2293033470/grpc-1.1.2293033470.tgz
-    version: 1.1.2293033470
+    - https://github.com/ohdat/helm-charts/releases/download/grpc-1.1.2293038167/grpc-1.1.2293038167.tgz
+    version: 1.1.2293038167
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2022-05-09T08:36:19.600773742Z"
@@ -1147,17 +1147,6 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/socket-1.1.1438520133/socket-1.1.1438520133.tgz
     version: 1.1.1438520133
-  tcpservice:
-  - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2022-05-09T08:45:48.241924263Z"
-    description: A Helm chart for Kubernetes
-    digest: 2ff1691de874a84f3d9a097520833ff2f388d0fed212f8e4d556ae28d08d5f1d
-    name: tcpservice
-    type: application
-    urls:
-    - https://github.com/ohdat/helm-charts/releases/download/tcpservice-1.1.2293033470/tcpservice-1.1.2293033470.tgz
-    version: 1.1.2293033470
   website:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -1219,4 +1208,4 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/website-0.1.9/website-0.1.9.tgz
     version: 0.1.9
-generated: "2022-05-09T08:45:48.243446382Z"
+generated: "2022-05-09T08:46:10.380046308Z"
