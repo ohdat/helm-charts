@@ -1,7 +1,6 @@
 {{- if .Values.volume.enabled }}
 {{- $name := include "service.name" .}}
 {{- range $key,$value := .Values.volume.options }}
-{{- $size := .Values.volume.size }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -9,10 +8,10 @@ metadata:
   name: "{{ $name }}-{{ $value.name }}-{{ $key }}"
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   storageClassName: {{ $value.name }}
   resources:
     requests:
-      storage: {{ $size }}
+      storage: 50Gi
 {{- end }}
 {{- end }}
