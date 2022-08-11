@@ -96,3 +96,4 @@ volume:
   options: 
   - name: efs-sc
     path: /test
+  size: 20Gi
