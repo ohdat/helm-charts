@@ -12,6 +12,6 @@ spec:
   storageClassName: {{ $value.name }}
   resources:
     requests:
-      storage: 50Gi
+      storage: {{ $value.size }}
 {{- end }}
 {{- end }}
