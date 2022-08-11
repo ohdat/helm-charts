@@ -12,6 +12,6 @@ spec:
   storageClassName: {{ $value.name }}
   resources:
     requests:
-      storage: {{ .Values.volume.size }}
+      storage: {{ .Values.volume.size | quote }}
 {{- end }}
 {{- end }}
