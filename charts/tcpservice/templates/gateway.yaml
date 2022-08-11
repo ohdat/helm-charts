@@ -9,7 +9,7 @@ spec:
     istio: ingressgateway # use istio default controller
   servers:
     - port:
-        number: 8000
+        number: {{ .Values.service.port }} 
         name: tcp
         protocol: TCP
       hosts: {{ .Values.gateway.hosts }}
@@ -23,10 +23,12 @@ spec:
   gateways:
     - {{ include "tcpservice.fullname" . }}
   tcp:
-    - route:
-        - destination:
-            host: {{ include "tcpservice.fullname" . }} # use tcpservice name 
-            port:
-              number: {{ .Values.service.port }}      
+  - match:
+    - port: {{ .Values.service.port }} 
+    route:
+    - destination:
+        host: {{ include "tcpservice.fullname" . }} # use tcpservice name 
+        port:
+          number: {{ .Values.service.port }}      
           
 {{- end }}

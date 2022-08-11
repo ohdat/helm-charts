@@ -36,7 +36,7 @@ serviceAccount:
 
 service:
   type: ClusterIP
-  port: 8080
+  port: 9899
 
 podAnnotations:
   serviceType: "tcp"
@@ -82,8 +82,7 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
 
-nodeSelector: 
-  pandagame: pvp
+nodeSelector: []
 
 tolerations: []
 
