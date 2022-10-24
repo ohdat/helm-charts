@@ -1,6 +1,20 @@
 {{- if .Values.volume.enabled }}
-{{- $name := include "grpc.name" .}}
+{{- $name := .Chart.Name }}
 {{- range $key,$value := .Values.volume.options }}
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: {{ $value.name }}
+provisioner: efs.csi.aws.com
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: fs-07e7ac16e93531790
+  directoryPerms: "700"
+  gidRangeStart: "1000" # optional
+  gidRangeEnd: "2000" # optional
+  basePath: "/dynamic_provisioning" # optional
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
