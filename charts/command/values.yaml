@@ -50,6 +50,7 @@ securityContext: {}
 
 volume:
   enabled: false
+  efsid: fs-07e7ac16e93531790
   options: 
   - name: efs-sc
     path: /test
