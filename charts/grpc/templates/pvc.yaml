@@ -1,5 +1,6 @@
 {{- if .Values.volume.enabled }}
 {{- $name := .Chart.Name }}
+{{- $efsid :=  .Values.volume.efsid }}
 {{- range $key,$value := .Values.volume.options }}
 ---
 kind: StorageClass
@@ -9,7 +10,7 @@ metadata:
 provisioner: efs.csi.aws.com
 parameters:
   provisioningMode: efs-ap
-  fileSystemId: {{ .Values.volume.efsid }}
+  fileSystemId: {{ $efsid }}
   directoryPerms: "700"
   gidRangeStart: "1000" # optional
   gidRangeEnd: "2000" # optional
