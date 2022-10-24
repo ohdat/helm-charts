@@ -347,6 +347,16 @@ entries:
   grpc:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2022-10-24T08:34:04.936513439Z"
+    description: A Helm chart for Kubernetes
+    digest: 220627704e2b5ac1797d8a4b4db0a1d86fa47bd7d33df51f948c5076182f24d3
+    name: grpc
+    type: application
+    urls:
+    - https://github.com/ohdat/helm-charts/releases/download/grpc-1.1.3311199957/grpc-1.1.3311199957.tgz
+    version: 1.1.3311199957
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2022-10-24T04:55:55.005556604Z"
     description: A Helm chart for Kubernetes
     digest: c6f407d0b84e1e973cf6a4084b9b5423bc2ce8c7168e11928ea0862332aee270
@@ -1459,4 +1469,4 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/website-0.1.9/website-0.1.9.tgz
     version: 0.1.9
-generated: "2022-10-24T04:55:55.006468607Z"
+generated: "2022-10-24T08:34:04.945130177Z"
