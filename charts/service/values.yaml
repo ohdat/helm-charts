@@ -68,18 +68,18 @@ resources:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
-    cpu: 200m
-    memory: 500Mi
+    cpu: 500m
+    memory: 1000Mi
   requests:
-    cpu: 200m
-    memory: 500Mi
+    cpu: 500m
+    memory: 1000Mi
 
 autoscaling:
   enabled: true
   minReplicas: 1
   maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  targetMemoryUtilizationPercentage: 80
+  targetCPUUtilizationPercentage: 60
+  targetMemoryUtilizationPercentage: 60
 
 nodeSelector: {}
 
