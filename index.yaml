@@ -3,6 +3,16 @@ entries:
   bluegreen:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-05-18T06:32:17.629453112Z"
+    description: A Helm chart for Kubernetes
+    digest: e03231c89d1239d76ffc8d653d499e79da45c263ca6b315f35dedd05abc86e94
+    name: bluegreen
+    type: application
+    urls:
+    - https://github.com/ohdat/helm-charts/releases/download/bluegreen-1.1.5011245645/bluegreen-1.1.5011245645.tgz
+    version: 1.1.5011245645
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-05-18T06:03:37.51093152Z"
     description: A Helm chart for Kubernetes
     digest: 999dd217a9b3a435578fa5d977cda470be290e09e4d1f9cd0d8d8b7a49696794
@@ -1560,4 +1570,4 @@ entries:
     urls:
     - https://github.com/ohdat/helm-charts/releases/download/website-0.1.9/website-0.1.9.tgz
     version: 0.1.9
-generated: "2023-05-18T06:03:37.512281992Z"
+generated: "2023-05-18T06:32:17.630238004Z"
