@@ -7,28 +7,28 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    # - port: {{ .Values.service.port }}
-    #   targetPort: http
-    #   protocol: TCP
-    #   name: http
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+      name: http
     # - port: {{ .Values.service.grpcport }}
     #   targetPort: grpc
     #   protocol: TCP
     #   name: grpc
 
 
-  {{- if not .Values.gateway.enabled }}
-    - name: http2
-      port: {{ .Values.service.grpcport }}
-      protocol: TCP
-      targetPort: {{ .Values.service.port }}
-  {{- end }}
+  # {{- if not .Values.gateway.enabled }}
+  #   - name: http2
+  #     port: {{ .Values.service.grpcport }}
+  #     protocol: TCP
+  #     targetPort: {{ .Values.service.port }}
+  # {{- end }}
 
-  {{- if .Values.gateway.enabled }}
-    - name: http
-      port: {{ .Values.service.port }}
-      protocol: TCP
-      targetPort: {{ .Values.service.port }}
-  {{- end }}
+  # {{- if .Values.gateway.enabled }}
+  #   - name: http
+  #     port: {{ .Values.service.port }}
+  #     protocol: TCP
+  #     targetPort: {{ .Values.service.port }}
+  # {{- end }}
   selector:
     {{- include "bulegreen.selectorLabels" . | nindent 4 }}
