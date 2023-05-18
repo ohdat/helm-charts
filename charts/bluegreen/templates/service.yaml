@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "socket.fullname" . }}
+  name: {{ include "bulegreen.fullname" . }}
   labels:
-    {{- include "socket.labels" . | nindent 4 }}
+    {{- include "bulegreen.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -31,4 +31,4 @@ spec:
       targetPort: {{ .Values.service.port }}
   {{- end }}
   selector:
-    {{- include "socket.selectorLabels" . | nindent 4 }}
+    {{- include "bulegreen.selectorLabels" . | nindent 4 }}

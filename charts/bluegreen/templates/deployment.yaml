@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "socket.fullname" . }}
+  name: {{ include "bulegreen.fullname" . }}
   labels:
-    app: {{ include "socket.fullname" . }}
-    {{- include "socket.labels" . | nindent 4 }}
+    app: {{ include "bulegreen.fullname" . }}
+    {{- include "bulegreen.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "socket.selectorLabels" . | nindent 6 }}
+      {{- include "bulegreen.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       annotations:
@@ -20,14 +20,14 @@ spec:
       {{- end }}
 
       labels:
-        app: {{ include "socket.fullname" . }}
-        {{- include "socket.selectorLabels" . | nindent 8 }}
+        app: {{ include "bulegreen.fullname" . }}
+        {{- include "bulegreen.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "socket.serviceAccountName" . }}
+      serviceAccountName: {{ include "bulegreen.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -38,7 +38,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           tty: true
           volumeMounts:
-            {{- include "socket.volumeMounts" . | nindent 12 }}
+            {{- include "bulegreen.volumeMounts" . | nindent 12 }}
           {{- with .Values.commandOverride }}
           command:
             {{- toYaml .| nindent 12  }}
@@ -62,4 +62,4 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-        {{- include "socket.volumes" . | nindent 8 }}
+        {{- include "bulegreen.volumes" . | nindent 8 }}

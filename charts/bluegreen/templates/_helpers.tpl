@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "socket.name" -}}
+{{- define "bulegreen.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "socket.fullname" -}}
+{{- define "bulegreen.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "socket.chart" -}}
+{{- define "bulegreen.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "socket.labels" -}}
-helm.sh/chart: {{ include "socket.chart" . }}
-{{ include "socket.selectorLabels" . }}
+{{- define "bulegreen.labels" -}}
+helm.sh/chart: {{ include "bulegreen.chart" . }}
+{{ include "bulegreen.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "socket.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "socket.name" . }}
+{{- define "bulegreen.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "bulegreen.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "socket.serviceAccountName" -}}
+{{- define "bulegreen.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "socket.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "bulegreen.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
@@ -66,7 +66,7 @@ Create the name of the service account to use
 {{/*
 Create the volumes 
 */}}
-{{- define "socket.volumes" -}}
+{{- define "bulegreen.volumes" -}}
 {{- if .Values.config.enabled }}
 - name: config-volume
   configMap:
@@ -88,7 +88,7 @@ Create the volumes
 {{/*
 Create the volumeMounts 
 */}}
-{{- define "socket.volumeMounts" -}}
+{{- define "bulegreen.volumeMounts" -}}
 {{- if .Values.config.enabled }}
 - name: config-volume
   mountPath: "{{ .Values.config.mountPath }}{{ .Values.config.path }}"
