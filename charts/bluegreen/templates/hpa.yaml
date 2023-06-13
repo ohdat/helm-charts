@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "website.fullname" . }}
+  name: {{ include "bulegreen.fullname" . }}
   labels:
-    {{- include "website.labels" . | nindent 4 }}
+    {{- include "bulegreen.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "website.fullname" . }}
+    name: {{ include "bulegreen.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
